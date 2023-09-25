@@ -1,2 +1,0 @@
-# testRithmABC
-Created with CodeSandbox
