@@ -5,6 +5,8 @@ const initialState: HomeState = {
   isLoadingListOfNFTs: false,
   listOfNFTs: [],
   selectedNFTsToTransfer: [],
+  isTransferModalOpen: false,
+  isTransferingNFTs: false,
 };
 
 // home slice
@@ -37,6 +39,16 @@ export const homeSlice = createSlice({
       if (index > -1) {
         state.selectedNFTsToTransfer.splice(index, 1);
       }
+    },
+    setIsTransferModalOpen: (state, action: PayloadAction<boolean>) => {
+      state.isTransferModalOpen = action.payload;
+    },
+    transferSelectedNFTs: (
+      state,
+      action: PayloadAction<{ receiver: string }>
+    ) => {},
+    setIsTransferingNFTs: (state, action: PayloadAction<boolean>) => {
+      state.isTransferingNFTs = action.payload;
     },
   },
 });

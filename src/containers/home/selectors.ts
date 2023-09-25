@@ -7,6 +7,7 @@ export const HomeDomains = {
   listOfNFTs: (state: RootState) => state.home.listOfNFTs,
   selectedNFTsToTransfer: (state: RootState) =>
     state.home.selectedNFTsToTransfer,
+  isTransferModalOpen: (state: RootState) => state.home.isTransferModalOpen,
 };
 
 export const HomeSelectors = {
@@ -21,5 +22,9 @@ export const HomeSelectors = {
   selectedNFTsToTransfer: createSelector(
     HomeDomains.selectedNFTsToTransfer,
     (selectedNFTsToTransfer) => selectedNFTsToTransfer
+  ),
+  isTransferModalOpen: createSelector(
+    HomeDomains.isTransferModalOpen,
+    (isTransferModalOpen) => isTransferModalOpen
   ),
 };

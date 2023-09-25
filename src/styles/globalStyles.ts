@@ -205,27 +205,6 @@ export const BORDER_BLACK_WHITE_8 = css`
 
 export const BORDER_BLACK_WHITE_12 = css`
   position: relative;
-  z-index: 3;
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    padding: 1.3px;
-    background: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.15),
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.25)
-    );
-    -webkit-mask:
-      linear-gradient(var(--White) 0 0) content-box,
-      linear-gradient(var(--White) 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-  }
 `;
 
 export const BORDER_BLACK_WHITE_16 = css`

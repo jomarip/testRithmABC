@@ -2,6 +2,8 @@ export interface HomeState {
   isLoadingListOfNFTs: boolean;
   listOfNFTs: Array<NFTResponse>;
   selectedNFTsToTransfer: Array<NFTResponse>;
+  isTransferModalOpen: boolean;
+  isTransferingNFTs: boolean;
 }
 
 export interface NFTResponse {

@@ -6,19 +6,19 @@ import 'styles/bases.css';
 import { Blockchain } from './containers/global';
 import { CustomToastContainer } from './components/toast/ToastContainer';
 import NotFound from './containers/notFound/NotFound';
-import { WagmiConfig, createConfig, configureChains } from 'wagmi'
+import { WagmiConfig, createConfig, configureChains } from 'wagmi';
 import { avalanche } from 'wagmi/chains';
 
-import { publicProvider } from 'wagmi/providers/public'
+import { publicProvider } from 'wagmi/providers/public';
 
 const { publicClient, webSocketPublicClient } = configureChains(
   [avalanche],
-  [publicProvider()],
-)
+  [publicProvider()]
+);
 const config = createConfig({
   publicClient,
   webSocketPublicClient,
-})
+});
 // define theme
 const theme = createTheme({
   palette: {
@@ -39,28 +39,27 @@ const theme = createTheme({
 export function App() {
   return (
     <WagmiConfig config={config}>
-
-    <ThemeProvider theme={theme}>
-      <CustomToastContainer />
-      <CssBaseline />
-      <AppContainer>
-        <Blockchain />
-        <Router>
-          <ContentContainer>
-            <Routes>
-              {appRoutes.map((route) => (
-                <Route
-                  key={route.key}
-                  path={route.path}
-                  element={<route.component />}
-                />
-              ))}
-              <Route path="*" element={<NotFound />}></Route>
-            </Routes>
-          </ContentContainer>
-        </Router>
-      </AppContainer>
-    </ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CustomToastContainer />
+        <CssBaseline />
+        <AppContainer>
+          <Blockchain />
+          <Router>
+            <ContentContainer>
+              <Routes>
+                {appRoutes.map((route) => (
+                  <Route
+                    key={route.key}
+                    path={route.path}
+                    element={<route.component />}
+                  />
+                ))}
+                <Route path="*" element={<NotFound />}></Route>
+              </Routes>
+            </ContentContainer>
+          </Router>
+        </AppContainer>
+      </ThemeProvider>
     </WagmiConfig>
   );
 }
@@ -78,6 +77,5 @@ const ContentContainer = styled(Box)`
   color: white;
 `;
 export function WrappedApp() {
-
   return <App />;
 }

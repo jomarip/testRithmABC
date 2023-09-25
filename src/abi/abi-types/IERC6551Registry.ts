@@ -13,7 +13,7 @@ import type {
   ContractRunner,
   ContractMethod,
   Listener,
-} from "ethers";
+} from 'ethers';
 import type {
   TypedContractEvent,
   TypedDeferredTopicFilter,
@@ -21,32 +21,32 @@ import type {
   TypedLogDescription,
   TypedListener,
   TypedContractMethod,
-} from "./common";
+} from './common';
 
 export interface IERC6551RegistryInterface extends Interface {
-  getFunction(nameOrSignature: "account" | "createAccount"): FunctionFragment;
+  getFunction(nameOrSignature: 'account' | 'createAccount'): FunctionFragment;
 
-  getEvent(nameOrSignatureOrTopic: "AccountCreated"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'AccountCreated'): EventFragment;
 
   encodeFunctionData(
-    functionFragment: "account",
+    functionFragment: 'account',
     values: [AddressLike, BigNumberish, AddressLike, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "createAccount",
+    functionFragment: 'createAccount',
     values: [
       AddressLike,
       BigNumberish,
       AddressLike,
       BigNumberish,
       BigNumberish,
-      BytesLike
+      BytesLike,
     ]
   ): string;
 
-  decodeFunctionResult(functionFragment: "account", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'account', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "createAccount",
+    functionFragment: 'createAccount',
     data: BytesLike
   ): Result;
 }
@@ -58,7 +58,7 @@ export namespace AccountCreatedEvent {
     chainId: BigNumberish,
     tokenContract: AddressLike,
     tokenId: BigNumberish,
-    salt: BigNumberish
+    salt: BigNumberish,
   ];
   export type OutputTuple = [
     account: string,
@@ -66,7 +66,7 @@ export namespace AccountCreatedEvent {
     chainId: bigint,
     tokenContract: string,
     tokenId: bigint,
-    salt: bigint
+    salt: bigint,
   ];
   export interface OutputObject {
     account: string;
@@ -131,10 +131,10 @@ export interface IERC6551Registry extends BaseContract {
       chainId: BigNumberish,
       tokenContract: AddressLike,
       tokenId: BigNumberish,
-      salt: BigNumberish
+      salt: BigNumberish,
     ],
     [string],
-    "view"
+    'view'
   >;
 
   createAccount: TypedContractMethod<
@@ -144,10 +144,10 @@ export interface IERC6551Registry extends BaseContract {
       tokenContract: AddressLike,
       tokenId: BigNumberish,
       salt: BigNumberish,
-      initData: BytesLike
+      initData: BytesLike,
     ],
     [string],
-    "nonpayable"
+    'nonpayable'
   >;
 
   getFunction<T extends ContractMethod = ContractMethod>(
@@ -155,20 +155,7 @@ export interface IERC6551Registry extends BaseContract {
   ): T;
 
   getFunction(
-    nameOrSignature: "account"
-  ): TypedContractMethod<
-    [
-      implementation: AddressLike,
-      chainId: BigNumberish,
-      tokenContract: AddressLike,
-      tokenId: BigNumberish,
-      salt: BigNumberish
-    ],
-    [string],
-    "view"
-  >;
-  getFunction(
-    nameOrSignature: "createAccount"
+    nameOrSignature: 'account'
   ): TypedContractMethod<
     [
       implementation: AddressLike,
@@ -176,14 +163,27 @@ export interface IERC6551Registry extends BaseContract {
       tokenContract: AddressLike,
       tokenId: BigNumberish,
       salt: BigNumberish,
-      initData: BytesLike
     ],
     [string],
-    "nonpayable"
+    'view'
+  >;
+  getFunction(
+    nameOrSignature: 'createAccount'
+  ): TypedContractMethod<
+    [
+      implementation: AddressLike,
+      chainId: BigNumberish,
+      tokenContract: AddressLike,
+      tokenId: BigNumberish,
+      salt: BigNumberish,
+      initData: BytesLike,
+    ],
+    [string],
+    'nonpayable'
   >;
 
   getEvent(
-    key: "AccountCreated"
+    key: 'AccountCreated'
   ): TypedContractEvent<
     AccountCreatedEvent.InputTuple,
     AccountCreatedEvent.OutputTuple,
@@ -191,7 +191,7 @@ export interface IERC6551Registry extends BaseContract {
   >;
 
   filters: {
-    "AccountCreated(address,address,uint256,address,uint256,uint256)": TypedContractEvent<
+    'AccountCreated(address,address,uint256,address,uint256,uint256)': TypedContractEvent<
       AccountCreatedEvent.InputTuple,
       AccountCreatedEvent.OutputTuple,
       AccountCreatedEvent.OutputObject

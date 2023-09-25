@@ -1,8 +1,17 @@
-import { CHAIN_ID_HEX, ERC721_ADDRESS, ownerAddress } from '@/configs/web3';
+import {
+  CHAIN_ID_HEX,
+  ERC721_ADDRESS,
+  erc721Contract,
+  ownerAddress,
+} from '@/configs/web3';
 import { nftAPI } from '../global';
 import { homeActions } from './slice';
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, select } from 'redux-saga/effects';
 import { NFTResponse } from './types';
+import { ERC721__factory } from '@/abi/abi-types';
+import { Signer, ethers } from 'ethers';
+import { HomeSelectors } from './selectors';
+import { toast } from 'react-toastify';
 
 function* getListOfNFTs() {
   try {
@@ -23,6 +32,32 @@ function* getListOfNFTs() {
   }
 }
 
+function* transferSelectedNFTs(
+  action: ReturnType<typeof homeActions.transferSelectedNFTs>
+) {
+  const { receiver } = action.payload;
+  try {
+    yield put(homeActions.setIsTransferingNFTs(true));
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer: Signer = yield provider.getSigner();
+    const selectedNfts: NFTResponse[] = yield select(
+      HomeSelectors.selectedNFTsToTransfer
+    );
+
+    const contract = ERC721__factory.connect(ERC721_ADDRESS, signer);
+    for (const nft of selectedNfts) {
+      yield contract.approve(receiver, nft.token_id);
+      yield contract.transferFrom(ownerAddress, receiver, nft.token_id);
+    }
+    toast.success('Transfered NFTs successfully');
+  } catch (error) {
+    console.log({ error });
+  } finally {
+    yield put(homeActions.setIsTransferingNFTs(false));
+  }
+}
+
 export function* homeSaga() {
   yield takeLatest(homeActions.getListOfNFTs.type, getListOfNFTs);
+  yield takeLatest(homeActions.transferSelectedNFTs.type, transferSelectedNFTs);
 }

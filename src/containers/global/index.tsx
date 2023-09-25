@@ -1,13 +1,10 @@
 import { startMoralis } from '@/configs/moralis';
 import Moralis from 'moralis';
-import { useEffect, useState } from 'react';
-import { ethers, getDefaultProvider } from 'ethers';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { globalActions } from './slice';
-import { InjectedConnector } from 'wagmi/connectors/injected';
 import { useConnect } from 'wagmi';
 import { metamaskConnector } from './utils/connector';
-import { GlobalSelectors } from './selectors';
 
 export const nftAPI = Moralis.EvmApi.nft;
 

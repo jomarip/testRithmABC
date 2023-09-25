@@ -12,16 +12,6 @@ const config = {
   AVALANCHE_RPC_URL: 'https://api.avax.network/ext/bc/C/rpc',
 };
 
-const connectWallet = async () => {
-  // @ts-ignore
-  if (typeof window.ethereum !== 'undefined') {
-    // @ts-ignore
-    const [account] = await window.ethereum.request({
-      method: 'eth_requestAccounts',
-    }); // connect wallet
-  }
-};
-
 const {
   REGISTRY_ADDRESS,
   ERC721_ADDRESS,
