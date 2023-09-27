@@ -2,6 +2,7 @@
  * Combine all reducers in this file and export the combined reducers.
  */
 
+import { boundedNftsReducer } from '@/containers/boundedNFTS/slice';
 import { globalReducer } from '@/containers/global/slice';
 import { homeReducer } from '@/containers/home/slice';
 import { combineReducers } from '@reduxjs/toolkit';
@@ -13,5 +14,6 @@ export function createReducer() {
   return combineReducers({
     global: globalReducer,
     home: homeReducer,
+    boundedNfts: boundedNftsReducer,
   });
 }

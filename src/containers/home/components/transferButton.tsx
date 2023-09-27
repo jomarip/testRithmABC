@@ -13,7 +13,7 @@ export const TransferButton = () => {
   const haveNftsToTransfer =
     useSelector(HomeSelectors.selectedNFTsToTransfer).length > 0;
   const handleTransferClick = () => {
-    dispatch(homeActions.setIsTransferModalOpen(true));
+    // dispatch(homeActions.setIsTransferModalOpen(true));
   };
   return (
     <>

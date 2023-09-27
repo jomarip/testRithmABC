@@ -21,27 +21,7 @@ export const ListOfNFTs = () => {
       })
     );
   }, [connectedWalletAddress]);
-  const handleNftClick = async (index: number) => {
-    const exists = selectedNFTsToTransfer.find(
-      (nft) => nft.token_id === nftList[index].token_id
-    );
-    //    add to selected nfts to transfer if it's not already there
-    if (!exists) {
-      dispatch(
-        homeActions.addToSelectedNFTsToTransfer(nftList[index].token_id)
-      );
-    }
-    //    remove from selected nfts to transfer if it's already there
-    else {
-      dispatch(
-        homeActions.removeFromSelectedNFTsToTransfer(nftList[index].token_id)
-      );
-    }
-    const additional = await nftsFromCollection(nftList[index].token_address);
-    console.log({
-      additional,
-    });
-  };
+  const handleNftClick = async (index: number) => {};
 
   return (
     <>

@@ -17,6 +17,7 @@ const {
   CHAIN_ID_HEX,
   CHAIN_ID,
   AVALANCHE_RPC_URL,
+  IMPLEMENTATION_ADDRESS,
 } = config;
 export const avalancheDefaultProvider = getDefaultProvider(AVALANCHE_RPC_URL);
 const registryContract = IERC6551Registry__factory.connect(
@@ -35,4 +36,5 @@ export {
   REGISTRY_ADDRESS,
   CHAIN_ID_HEX,
   CHAIN_ID,
+  IMPLEMENTATION_ADDRESS,
 };
