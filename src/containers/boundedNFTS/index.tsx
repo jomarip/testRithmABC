@@ -25,5 +25,18 @@ export const BoundedNfts = () => {
   }, [id, connectedWalletAddress]);
   console.log({ boundedNfts });
 
-  return <></>;
+  return (
+    <div>
+      <h2>Bound Account NFTs</h2>
+      {boundedNfts.map((nft, index) => (
+        <div key={index}>
+          <img
+            src={nft.media.media_collection.low.url}
+            alt={`Token ${nft.token_id}`}
+          />
+          <p>Token ID: {nft.token_id}</p>
+        </div>
+      ))}
+    </div>
+  );
 };
