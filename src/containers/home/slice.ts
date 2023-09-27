@@ -14,7 +14,7 @@ export const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
-    getListOfNFTs: (state, action: PayloadAction<void>) => {},
+    getListOfNFTs: (state, action: PayloadAction<{ owner: string }>) => {},
     setIsLoadingListOfNFTs: (state, action: PayloadAction<boolean>) => {
       state.isLoadingListOfNFTs = action.payload;
     },

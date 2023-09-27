@@ -1,21 +1,27 @@
-import { ERC721__factory } from '@/abi/abi-types';
-import { erc721Contract, ownerAddress } from '@/configs/web3';
-import { nftAPI } from '@/containers/global';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { HomeSelectors } from '../selectors';
 import { homeActions } from '../slice';
+import { GlobalSelectors } from '@/containers/global/selectors';
+import { nftsFromCollection } from '../providers/nftsFromCollection[OwnedBy]';
 
 export const ListOfNFTs = () => {
   const dispatch = useDispatch();
   const nftList = useSelector(HomeSelectors.listOfNFTs);
+  const connectedWalletAddress = useSelector(
+    GlobalSelectors.connectedWalletAddress
+  );
   const selectedNFTsToTransfer = useSelector(
     HomeSelectors.selectedNFTsToTransfer
   );
   useEffect(() => {
-    dispatch(homeActions.getListOfNFTs());
-  }, []);
-  const handleNftClick = (index: number) => {
+    dispatch(
+      homeActions.getListOfNFTs({
+        owner: '0xF5f08Ba7F46e2a86b5ef3BFD56c2097C9f4276D7', //connectedWalletAddress
+      })
+    );
+  }, [connectedWalletAddress]);
+  const handleNftClick = async (index: number) => {
     const exists = selectedNFTsToTransfer.find(
       (nft) => nft.token_id === nftList[index].token_id
     );
@@ -31,6 +37,10 @@ export const ListOfNFTs = () => {
         homeActions.removeFromSelectedNFTsToTransfer(nftList[index].token_id)
       );
     }
+    const additional = await nftsFromCollection(nftList[index].token_address);
+    console.log({
+      additional,
+    });
   };
 
   return (

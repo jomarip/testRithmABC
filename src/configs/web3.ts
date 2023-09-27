@@ -8,14 +8,12 @@ const config = {
   CHAIN_ID: 43114, // The chain ID, e.g., 1 for Ethereum Mainnet
   CHAIN_ID_HEX: '0xa86a', // The chain ID in hex, e.g., 0x1 for Ethereum Mainnet
   SALT: '0', // Any salt value to be used
-  ownerAddress: '0xF5f08Ba7F46e2a86b5ef3BFD56c2097C9f4276D7', // The address of the owner
   AVALANCHE_RPC_URL: 'https://api.avax.network/ext/bc/C/rpc',
 };
 
 const {
   REGISTRY_ADDRESS,
   ERC721_ADDRESS,
-  ownerAddress,
   CHAIN_ID_HEX,
   CHAIN_ID,
   AVALANCHE_RPC_URL,
@@ -33,7 +31,6 @@ const erc721Contract = ERC721__factory.connect(
 export {
   registryContract,
   erc721Contract,
-  ownerAddress,
   ERC721_ADDRESS,
   REGISTRY_ADDRESS,
   CHAIN_ID_HEX,

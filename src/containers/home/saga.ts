@@ -1,10 +1,4 @@
-import {
-  CHAIN_ID_HEX,
-  ERC721_ADDRESS,
-  erc721Contract,
-  ownerAddress,
-} from '@/configs/web3';
-import { nftAPI } from '../global';
+import { ERC721_ADDRESS } from '@/configs/web3';
 import { homeActions } from './slice';
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { NFTResponse } from './types';
@@ -12,20 +6,18 @@ import { ERC721__factory } from '@/abi/abi-types';
 import { Signer, ethers } from 'ethers';
 import { HomeSelectors } from './selectors';
 import { toast } from 'react-toastify';
+import { nftsFromCollection } from './providers/nftsFromCollection[OwnedBy]';
+import { GlobalSelectors } from '../global/selectors';
 
-function* getListOfNFTs() {
+function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
+  const { owner: ownerAddress } = action.payload;
   try {
     yield put(homeActions.setIsLoadingListOfNFTs(true));
     // @ts-ignore
-    const nftsResponse = yield nftAPI.getWalletNFTs({
-      chain: CHAIN_ID_HEX,
-      format: 'decimal',
-      mediaItems: true,
-      address: ownerAddress,
-      tokenAddresses: [ERC721_ADDRESS],
-    });
-    const listOfNFTs: NFTResponse[] = nftsResponse.toJSON().result;
-    yield put(homeActions.setListOfNFTs(listOfNFTs));
+    const nftsResponse = yield nftsFromCollection(ownerAddress, [
+      ERC721_ADDRESS,
+    ]);
+    yield put(homeActions.setListOfNFTs(nftsResponse));
   } catch (error) {
   } finally {
     yield put(homeActions.setIsLoadingListOfNFTs(false));
@@ -38,6 +30,9 @@ function* transferSelectedNFTs(
   const { receiver } = action.payload;
   try {
     yield put(homeActions.setIsTransferingNFTs(true));
+    const ownerAddress: string = yield select(
+      GlobalSelectors.connectedWalletAddress
+    );
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer: Signer = yield provider.getSigner();
     const selectedNfts: NFTResponse[] = yield select(

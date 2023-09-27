@@ -19,7 +19,14 @@ export interface NFTResponse {
   name: string;
   symbol: string;
   token_uri: string;
-  metadata: string;
+  metadata: {
+    platform: string;
+    name: string;
+    description: string;
+    artist: string;
+    external_url: string;
+    image: string;
+  };
   last_token_uri_sync: string;
   last_metadata_sync: string;
   minter_address: string;
