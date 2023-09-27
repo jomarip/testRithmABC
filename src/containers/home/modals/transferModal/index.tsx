@@ -12,10 +12,10 @@ export const TransferModal = () => {
   const [destination, setDestination] = useState('');
   const isOpen = useSelector(HomeSelectors.isTransferModalOpen);
   const closeModal = () => {
-    dispatch(homeActions.setIsTransferModalOpen(false));
+    // dispatch(homeActions.setIsTransferModalOpen(false));
   };
   const transfer = () => {
-    dispatch(homeActions.transferSelectedNFTs({ receiver: destination }));
+    // dispatch(homeActions.transferSelectedNFTs({ receiver: destination }));
   };
 
   const setInputValue = (e: string) => {

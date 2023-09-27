@@ -2,6 +2,7 @@ import {
   CHAIN_ID,
   ERC721_ADDRESS,
   IMPLEMENTATION_ADDRESS,
+  erc721Contract,
   registryContract,
 } from '@/configs/web3';
 import { homeActions } from './slice';
@@ -34,8 +35,19 @@ function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
     addresses.forEach((address, index) => {
       toCall.push(nftsFromCollection(address, [ERC721_ADDRESS]));
     });
-    const nfts: NFTResponse[] = yield all(toCall);
-    console.log({ nfts });
+    const nfts: NFTResponse[][] = yield all(toCall);
+
+    nfts.forEach((nftList) => {
+      nftList.forEach((nft) => {
+        if (nft.metadata && typeof nft.metadata === 'string') {
+          nft.metadata = JSON.parse(nft.metadata);
+        }
+      });
+    });
+
+    nftsResponse.forEach((nft, index) => {
+      nft.boundedNfts = nfts[index];
+    });
 
     yield put(homeActions.setListOfNFTs(nftsResponse));
   } catch (error) {

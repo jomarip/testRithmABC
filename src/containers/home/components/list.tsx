@@ -4,9 +4,13 @@ import { HomeSelectors } from '../selectors';
 import { homeActions } from '../slice';
 import { GlobalSelectors } from '@/containers/global/selectors';
 import { nftsFromCollection } from '../providers/nftsFromCollection[OwnedBy]';
+import { AppPages } from '@/routes';
+import { useNavigate } from 'react-router-dom';
 
 export const ListOfNFTs = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const nftList = useSelector(HomeSelectors.listOfNFTs);
   const connectedWalletAddress = useSelector(
     GlobalSelectors.connectedWalletAddress
@@ -21,7 +25,13 @@ export const ListOfNFTs = () => {
       })
     );
   }, [connectedWalletAddress]);
-  const handleNftClick = async (index: number) => {};
+  const handleNftClick = async (index: number) => {
+    const nft = nftList[index];
+    console.log({ nft });
+    navigate({
+      pathname: `${AppPages.BoundedNfts}/${nft.token_id}`,
+    });
+  };
 
   return (
     <>

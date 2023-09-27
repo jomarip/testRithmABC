@@ -3,10 +3,11 @@ import { HomePage } from './containers/home';
 import { IRoute } from './interfaces';
 export enum AppPages {
   Home = '/',
+  BoundedNfts = '/bounded-nfts',
 }
 export const routes: Array<IRoute> = [
   {
-    key: 'home-route',
+    key: 'home',
     title: 'Home',
     path: AppPages.Home,
     enabled: true,
@@ -15,7 +16,7 @@ export const routes: Array<IRoute> = [
   {
     key: 'bounded-nfts',
     title: 'Bounded NFTs',
-    path: '/bounded-nfts/:address',
+    path: `${AppPages.BoundedNfts}/:id`,
     enabled: true,
     component: BoundedNfts,
   },

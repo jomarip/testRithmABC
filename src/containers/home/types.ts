@@ -6,7 +6,11 @@ export interface HomeState {
   isTransferingNFTs: boolean;
 }
 
-export interface NFTResponse {
+export type NFTResponse = MoralisNFTResponse & {
+  boundedNfts: Array<MoralisNFTResponse>;
+};
+
+interface MoralisNFTResponse {
   token_address: string;
   token_id: string;
   owner_of: string;
