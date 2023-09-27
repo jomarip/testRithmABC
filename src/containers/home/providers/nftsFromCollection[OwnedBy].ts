@@ -1,5 +1,5 @@
 import { CHAIN_ID_HEX } from '@/configs/web3';
-import { nftAPI } from '@/containers/global';
+import { nftAPI, tokenAPI } from '@/containers/global';
 import { NFTResponse } from '../types';
 
 export const nftsFromCollection = async (

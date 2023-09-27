@@ -14,6 +14,6 @@ export function createReducer() {
   return combineReducers({
     global: globalReducer,
     home: homeReducer,
-    boundedNfts: boundedNftsReducer,
+    boundedNFTs: boundedNftsReducer,
   });
 }

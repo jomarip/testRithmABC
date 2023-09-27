@@ -13,7 +13,7 @@ import type {
   ContractRunner,
   ContractMethod,
   Listener,
-} from "ethers";
+} from 'ethers';
 import type {
   TypedContractEvent,
   TypedDeferredTopicFilter,
@@ -21,283 +21,283 @@ import type {
   TypedLogDescription,
   TypedListener,
   TypedContractMethod,
-} from "./common";
+} from './common';
 
 export interface ERC721Interface extends Interface {
   getFunction(
     nameOrSignature:
-      | "_tokenIdToHashMap"
-      | "approve"
-      | "balanceOf"
-      | "burn"
-      | "createGenCollection"
-      | "createGenCollectionGroup"
-      | "getApproved"
-      | "getCollectionInfo"
-      | "getTokenInfo"
-      | "getTokensByOwner"
-      | "isApprovedForAll"
-      | "mint"
-      | "mintMany"
-      | "name"
-      | "owner"
-      | "ownerOf"
-      | "safeTransferFrom(address,address,uint256)"
-      | "safeTransferFrom(address,address,uint256,bytes)"
-      | "setApprovalForAll"
-      | "setBaseURI"
-      | "supportsInterface"
-      | "symbol"
-      | "tokenByIndex"
-      | "tokenOfOwnerByIndex"
-      | "tokenURI"
-      | "totalSupply"
-      | "transferFrom"
-      | "transferOwnership"
-      | "updateArtistAddress"
-      | "updateMaxInvocations"
-      | "updatePrice"
-      | "updateScript"
-      | "withdraw"
+      | '_tokenIdToHashMap'
+      | 'approve'
+      | 'balanceOf'
+      | 'burn'
+      | 'createGenCollection'
+      | 'createGenCollectionGroup'
+      | 'getApproved'
+      | 'getCollectionInfo'
+      | 'getTokenInfo'
+      | 'getTokensByOwner'
+      | 'isApprovedForAll'
+      | 'mint'
+      | 'mintMany'
+      | 'name'
+      | 'owner'
+      | 'ownerOf'
+      | 'safeTransferFrom(address,address,uint256)'
+      | 'safeTransferFrom(address,address,uint256,bytes)'
+      | 'setApprovalForAll'
+      | 'setBaseURI'
+      | 'supportsInterface'
+      | 'symbol'
+      | 'tokenByIndex'
+      | 'tokenOfOwnerByIndex'
+      | 'tokenURI'
+      | 'totalSupply'
+      | 'transferFrom'
+      | 'transferOwnership'
+      | 'updateArtistAddress'
+      | 'updateMaxInvocations'
+      | 'updatePrice'
+      | 'updateScript'
+      | 'withdraw'
   ): FunctionFragment;
 
   getEvent(
     nameOrSignatureOrTopic:
-      | "Approval"
-      | "ApprovalForAll"
-      | "Mint"
-      | "OwnershipTransferred"
-      | "Transfer"
+      | 'Approval'
+      | 'ApprovalForAll'
+      | 'Mint'
+      | 'OwnershipTransferred'
+      | 'Transfer'
   ): EventFragment;
 
   encodeFunctionData(
-    functionFragment: "_tokenIdToHashMap",
+    functionFragment: '_tokenIdToHashMap',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "approve",
+    functionFragment: 'approve',
     values: [AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "balanceOf",
+    functionFragment: 'balanceOf',
     values: [AddressLike]
   ): string;
-  encodeFunctionData(functionFragment: "burn", values: [BigNumberish]): string;
+  encodeFunctionData(functionFragment: 'burn', values: [BigNumberish]): string;
   encodeFunctionData(
-    functionFragment: "createGenCollection",
+    functionFragment: 'createGenCollection',
     values: [
       AddressLike,
       BigNumberish,
       BigNumberish,
       BigNumberish,
       BigNumberish,
-      string
+      string,
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "createGenCollectionGroup",
+    functionFragment: 'createGenCollectionGroup',
     values: [BigNumberish, BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getApproved",
+    functionFragment: 'getApproved',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getCollectionInfo",
+    functionFragment: 'getCollectionInfo',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getTokenInfo",
+    functionFragment: 'getTokenInfo',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "getTokensByOwner",
+    functionFragment: 'getTokensByOwner',
     values: [AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "isApprovedForAll",
+    functionFragment: 'isApprovedForAll',
     values: [AddressLike, AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "mint",
+    functionFragment: 'mint',
     values: [AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "mintMany",
+    functionFragment: 'mintMany',
     values: [AddressLike, BigNumberish, BigNumberish]
   ): string;
-  encodeFunctionData(functionFragment: "name", values?: undefined): string;
-  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'name', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'owner', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "ownerOf",
+    functionFragment: 'ownerOf',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     values: [AddressLike, AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     values: [AddressLike, AddressLike, BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "setApprovalForAll",
+    functionFragment: 'setApprovalForAll',
     values: [AddressLike, boolean]
   ): string;
-  encodeFunctionData(functionFragment: "setBaseURI", values: [string]): string;
+  encodeFunctionData(functionFragment: 'setBaseURI', values: [string]): string;
   encodeFunctionData(
-    functionFragment: "supportsInterface",
+    functionFragment: 'supportsInterface',
     values: [BytesLike]
   ): string;
-  encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(functionFragment: 'symbol', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "tokenByIndex",
+    functionFragment: 'tokenByIndex',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "tokenOfOwnerByIndex",
+    functionFragment: 'tokenOfOwnerByIndex',
     values: [AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "tokenURI",
+    functionFragment: 'tokenURI',
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "totalSupply",
+    functionFragment: 'totalSupply',
     values?: undefined
   ): string;
   encodeFunctionData(
-    functionFragment: "transferFrom",
+    functionFragment: 'transferFrom',
     values: [AddressLike, AddressLike, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "transferOwnership",
+    functionFragment: 'transferOwnership',
     values: [AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateArtistAddress",
+    functionFragment: 'updateArtistAddress',
     values: [BigNumberish, AddressLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateMaxInvocations",
+    functionFragment: 'updateMaxInvocations',
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "updatePrice",
+    functionFragment: 'updatePrice',
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateScript",
+    functionFragment: 'updateScript',
     values: [BigNumberish, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "withdraw",
+    functionFragment: 'withdraw',
     values: [BigNumberish]
   ): string;
 
   decodeFunctionResult(
-    functionFragment: "_tokenIdToHashMap",
+    functionFragment: '_tokenIdToHashMap',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'approve', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'balanceOf', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'burn', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "createGenCollection",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "createGenCollectionGroup",
+    functionFragment: 'createGenCollection',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getApproved",
+    functionFragment: 'createGenCollectionGroup',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getCollectionInfo",
+    functionFragment: 'getApproved',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getTokenInfo",
+    functionFragment: 'getCollectionInfo',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "getTokensByOwner",
+    functionFragment: 'getTokenInfo',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "isApprovedForAll",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mintMany", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256)",
+    functionFragment: 'getTokensByOwner',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "safeTransferFrom(address,address,uint256,bytes)",
+    functionFragment: 'isApprovedForAll',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'mint', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'mintMany', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'name', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'owner', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'ownerOf', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'safeTransferFrom(address,address,uint256)',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "setApprovalForAll",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "setBaseURI", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "supportsInterface",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "tokenByIndex",
+    functionFragment: 'safeTransferFrom(address,address,uint256,bytes)',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "tokenOfOwnerByIndex",
+    functionFragment: 'setApprovalForAll',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'setBaseURI', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "totalSupply",
+    functionFragment: 'supportsInterface',
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: 'symbol', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "transferFrom",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "transferOwnership",
+    functionFragment: 'tokenByIndex',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateArtistAddress",
+    functionFragment: 'tokenOfOwnerByIndex',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'tokenURI', data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'totalSupply',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateMaxInvocations",
+    functionFragment: 'transferFrom',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updatePrice",
+    functionFragment: 'transferOwnership',
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateScript",
+    functionFragment: 'updateArtistAddress',
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: 'updateMaxInvocations',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: 'updatePrice',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: 'updateScript',
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(functionFragment: 'withdraw', data: BytesLike): Result;
 }
 
 export namespace ApprovalEvent {
   export type InputTuple = [
     owner: AddressLike,
     approved: AddressLike,
-    tokenId: BigNumberish
+    tokenId: BigNumberish,
   ];
   export type OutputTuple = [owner: string, approved: string, tokenId: bigint];
   export interface OutputObject {
@@ -315,12 +315,12 @@ export namespace ApprovalForAllEvent {
   export type InputTuple = [
     owner: AddressLike,
     operator: AddressLike,
-    approved: boolean
+    approved: boolean,
   ];
   export type OutputTuple = [
     owner: string,
     operator: string,
-    approved: boolean
+    approved: boolean,
   ];
   export interface OutputObject {
     owner: string;
@@ -338,13 +338,13 @@ export namespace MintEvent {
     to: AddressLike,
     collectionId: BigNumberish,
     tokenId: BigNumberish,
-    hash: BytesLike
+    hash: BytesLike,
   ];
   export type OutputTuple = [
     to: string,
     collectionId: bigint,
     tokenId: bigint,
-    hash: string
+    hash: string,
   ];
   export interface OutputObject {
     to: string;
@@ -375,7 +375,7 @@ export namespace TransferEvent {
   export type InputTuple = [
     from: AddressLike,
     to: AddressLike,
-    tokenId: BigNumberish
+    tokenId: BigNumberish,
   ];
   export type OutputTuple = [from: string, to: string, tokenId: bigint];
   export interface OutputObject {
@@ -435,18 +435,18 @@ export interface ERC721 extends BaseContract {
   _tokenIdToHashMap: TypedContractMethod<
     [arg0: BigNumberish],
     [string],
-    "view"
+    'view'
   >;
 
   approve: TypedContractMethod<
     [to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
-  balanceOf: TypedContractMethod<[owner: AddressLike], [bigint], "view">;
+  balanceOf: TypedContractMethod<[owner: AddressLike], [bigint], 'view'>;
 
-  burn: TypedContractMethod<[_tokenId: BigNumberish], [void], "nonpayable">;
+  burn: TypedContractMethod<[_tokenId: BigNumberish], [void], 'nonpayable'>;
 
   createGenCollection: TypedContractMethod<
     [
@@ -455,19 +455,19 @@ export interface ERC721 extends BaseContract {
       _price: BigNumberish,
       _maxInvocations: BigNumberish,
       _tier: BigNumberish,
-      _script: string
+      _script: string,
     ],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   createGenCollectionGroup: TypedContractMethod<
     [_groupId: BigNumberish, _tier: BigNumberish, _price: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
-  getApproved: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+  getApproved: TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
 
   getCollectionInfo: TypedContractMethod<
     [_collectionId: BigNumberish],
@@ -479,152 +479,152 @@ export interface ERC721 extends BaseContract {
         price: bigint;
         artist: string;
         artistPercentage: bigint;
-      }
+      },
     ],
-    "view"
+    'view'
   >;
 
   getTokenInfo: TypedContractMethod<
     [_tokenId: BigNumberish],
     [[bigint, bigint, string, string]],
-    "view"
+    'view'
   >;
 
   getTokensByOwner: TypedContractMethod<
     [_owner: AddressLike],
     [bigint[]],
-    "view"
+    'view'
   >;
 
   isApprovedForAll: TypedContractMethod<
     [owner: AddressLike, operator: AddressLike],
     [boolean],
-    "view"
+    'view'
   >;
 
   mint: TypedContractMethod<
     [_to: AddressLike, _collectionId: BigNumberish],
     [void],
-    "payable"
+    'payable'
   >;
 
   mintMany: TypedContractMethod<
     [_to: AddressLike, _collectionId: BigNumberish, _amount: BigNumberish],
     [void],
-    "payable"
+    'payable'
   >;
 
-  name: TypedContractMethod<[], [string], "view">;
+  name: TypedContractMethod<[], [string], 'view'>;
 
-  owner: TypedContractMethod<[], [string], "view">;
+  owner: TypedContractMethod<[], [string], 'view'>;
 
-  ownerOf: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+  ownerOf: TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
 
-  "safeTransferFrom(address,address,uint256)": TypedContractMethod<
+  'safeTransferFrom(address,address,uint256)': TypedContractMethod<
     [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
-  "safeTransferFrom(address,address,uint256,bytes)": TypedContractMethod<
+  'safeTransferFrom(address,address,uint256,bytes)': TypedContractMethod<
     [
       from: AddressLike,
       to: AddressLike,
       tokenId: BigNumberish,
-      _data: BytesLike
+      _data: BytesLike,
     ],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   setApprovalForAll: TypedContractMethod<
     [operator: AddressLike, approved: boolean],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
-  setBaseURI: TypedContractMethod<[baseURI_: string], [void], "nonpayable">;
+  setBaseURI: TypedContractMethod<[baseURI_: string], [void], 'nonpayable'>;
 
   supportsInterface: TypedContractMethod<
     [interfaceId: BytesLike],
     [boolean],
-    "view"
+    'view'
   >;
 
-  symbol: TypedContractMethod<[], [string], "view">;
+  symbol: TypedContractMethod<[], [string], 'view'>;
 
-  tokenByIndex: TypedContractMethod<[index: BigNumberish], [bigint], "view">;
+  tokenByIndex: TypedContractMethod<[index: BigNumberish], [bigint], 'view'>;
 
   tokenOfOwnerByIndex: TypedContractMethod<
     [owner: AddressLike, index: BigNumberish],
     [bigint],
-    "view"
+    'view'
   >;
 
-  tokenURI: TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+  tokenURI: TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
 
-  totalSupply: TypedContractMethod<[], [bigint], "view">;
+  totalSupply: TypedContractMethod<[], [bigint], 'view'>;
 
   transferFrom: TypedContractMethod<
     [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   transferOwnership: TypedContractMethod<
     [newOwner: AddressLike],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   updateArtistAddress: TypedContractMethod<
     [_collectionId: BigNumberish, _artist: AddressLike],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   updateMaxInvocations: TypedContractMethod<
     [_collectionId: BigNumberish, _maxInvocations: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   updatePrice: TypedContractMethod<
     [_collectionId: BigNumberish, _price: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
   updateScript: TypedContractMethod<
     [_collectionId: BigNumberish, _script: string],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
 
-  withdraw: TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+  withdraw: TypedContractMethod<[value: BigNumberish], [void], 'nonpayable'>;
 
   getFunction<T extends ContractMethod = ContractMethod>(
     key: string | FunctionFragment
   ): T;
 
   getFunction(
-    nameOrSignature: "_tokenIdToHashMap"
-  ): TypedContractMethod<[arg0: BigNumberish], [string], "view">;
+    nameOrSignature: '_tokenIdToHashMap'
+  ): TypedContractMethod<[arg0: BigNumberish], [string], 'view'>;
   getFunction(
-    nameOrSignature: "approve"
+    nameOrSignature: 'approve'
   ): TypedContractMethod<
     [to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "balanceOf"
-  ): TypedContractMethod<[owner: AddressLike], [bigint], "view">;
+    nameOrSignature: 'balanceOf'
+  ): TypedContractMethod<[owner: AddressLike], [bigint], 'view'>;
   getFunction(
-    nameOrSignature: "burn"
-  ): TypedContractMethod<[_tokenId: BigNumberish], [void], "nonpayable">;
+    nameOrSignature: 'burn'
+  ): TypedContractMethod<[_tokenId: BigNumberish], [void], 'nonpayable'>;
   getFunction(
-    nameOrSignature: "createGenCollection"
+    nameOrSignature: 'createGenCollection'
   ): TypedContractMethod<
     [
       _artist: AddressLike,
@@ -632,24 +632,22 @@ export interface ERC721 extends BaseContract {
       _price: BigNumberish,
       _maxInvocations: BigNumberish,
       _tier: BigNumberish,
-      _script: string
+      _script: string,
     ],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "createGenCollectionGroup"
+    nameOrSignature: 'createGenCollectionGroup'
   ): TypedContractMethod<
     [_groupId: BigNumberish, _tier: BigNumberish, _price: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "getApproved"
-  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
-  getFunction(
-    nameOrSignature: "getCollectionInfo"
-  ): TypedContractMethod<
+    nameOrSignature: 'getApproved'
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
+  getFunction(nameOrSignature: 'getCollectionInfo'): TypedContractMethod<
     [_collectionId: BigNumberish],
     [
       [bigint, bigint, string, bigint, string, bigint] & {
@@ -659,173 +657,173 @@ export interface ERC721 extends BaseContract {
         price: bigint;
         artist: string;
         artistPercentage: bigint;
-      }
+      },
     ],
-    "view"
+    'view'
   >;
   getFunction(
-    nameOrSignature: "getTokenInfo"
+    nameOrSignature: 'getTokenInfo'
   ): TypedContractMethod<
     [_tokenId: BigNumberish],
     [[bigint, bigint, string, string]],
-    "view"
+    'view'
   >;
   getFunction(
-    nameOrSignature: "getTokensByOwner"
-  ): TypedContractMethod<[_owner: AddressLike], [bigint[]], "view">;
+    nameOrSignature: 'getTokensByOwner'
+  ): TypedContractMethod<[_owner: AddressLike], [bigint[]], 'view'>;
   getFunction(
-    nameOrSignature: "isApprovedForAll"
+    nameOrSignature: 'isApprovedForAll'
   ): TypedContractMethod<
     [owner: AddressLike, operator: AddressLike],
     [boolean],
-    "view"
+    'view'
   >;
   getFunction(
-    nameOrSignature: "mint"
+    nameOrSignature: 'mint'
   ): TypedContractMethod<
     [_to: AddressLike, _collectionId: BigNumberish],
     [void],
-    "payable"
+    'payable'
   >;
   getFunction(
-    nameOrSignature: "mintMany"
+    nameOrSignature: 'mintMany'
   ): TypedContractMethod<
     [_to: AddressLike, _collectionId: BigNumberish, _amount: BigNumberish],
     [void],
-    "payable"
+    'payable'
   >;
   getFunction(
-    nameOrSignature: "name"
-  ): TypedContractMethod<[], [string], "view">;
+    nameOrSignature: 'name'
+  ): TypedContractMethod<[], [string], 'view'>;
   getFunction(
-    nameOrSignature: "owner"
-  ): TypedContractMethod<[], [string], "view">;
+    nameOrSignature: 'owner'
+  ): TypedContractMethod<[], [string], 'view'>;
   getFunction(
-    nameOrSignature: "ownerOf"
-  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+    nameOrSignature: 'ownerOf'
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
   getFunction(
-    nameOrSignature: "safeTransferFrom(address,address,uint256)"
+    nameOrSignature: 'safeTransferFrom(address,address,uint256)'
   ): TypedContractMethod<
     [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "safeTransferFrom(address,address,uint256,bytes)"
+    nameOrSignature: 'safeTransferFrom(address,address,uint256,bytes)'
   ): TypedContractMethod<
     [
       from: AddressLike,
       to: AddressLike,
       tokenId: BigNumberish,
-      _data: BytesLike
+      _data: BytesLike,
     ],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "setApprovalForAll"
+    nameOrSignature: 'setApprovalForAll'
   ): TypedContractMethod<
     [operator: AddressLike, approved: boolean],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "setBaseURI"
-  ): TypedContractMethod<[baseURI_: string], [void], "nonpayable">;
+    nameOrSignature: 'setBaseURI'
+  ): TypedContractMethod<[baseURI_: string], [void], 'nonpayable'>;
   getFunction(
-    nameOrSignature: "supportsInterface"
-  ): TypedContractMethod<[interfaceId: BytesLike], [boolean], "view">;
+    nameOrSignature: 'supportsInterface'
+  ): TypedContractMethod<[interfaceId: BytesLike], [boolean], 'view'>;
   getFunction(
-    nameOrSignature: "symbol"
-  ): TypedContractMethod<[], [string], "view">;
+    nameOrSignature: 'symbol'
+  ): TypedContractMethod<[], [string], 'view'>;
   getFunction(
-    nameOrSignature: "tokenByIndex"
-  ): TypedContractMethod<[index: BigNumberish], [bigint], "view">;
+    nameOrSignature: 'tokenByIndex'
+  ): TypedContractMethod<[index: BigNumberish], [bigint], 'view'>;
   getFunction(
-    nameOrSignature: "tokenOfOwnerByIndex"
+    nameOrSignature: 'tokenOfOwnerByIndex'
   ): TypedContractMethod<
     [owner: AddressLike, index: BigNumberish],
     [bigint],
-    "view"
+    'view'
   >;
   getFunction(
-    nameOrSignature: "tokenURI"
-  ): TypedContractMethod<[tokenId: BigNumberish], [string], "view">;
+    nameOrSignature: 'tokenURI'
+  ): TypedContractMethod<[tokenId: BigNumberish], [string], 'view'>;
   getFunction(
-    nameOrSignature: "totalSupply"
-  ): TypedContractMethod<[], [bigint], "view">;
+    nameOrSignature: 'totalSupply'
+  ): TypedContractMethod<[], [bigint], 'view'>;
   getFunction(
-    nameOrSignature: "transferFrom"
+    nameOrSignature: 'transferFrom'
   ): TypedContractMethod<
     [from: AddressLike, to: AddressLike, tokenId: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "transferOwnership"
-  ): TypedContractMethod<[newOwner: AddressLike], [void], "nonpayable">;
+    nameOrSignature: 'transferOwnership'
+  ): TypedContractMethod<[newOwner: AddressLike], [void], 'nonpayable'>;
   getFunction(
-    nameOrSignature: "updateArtistAddress"
+    nameOrSignature: 'updateArtistAddress'
   ): TypedContractMethod<
     [_collectionId: BigNumberish, _artist: AddressLike],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "updateMaxInvocations"
+    nameOrSignature: 'updateMaxInvocations'
   ): TypedContractMethod<
     [_collectionId: BigNumberish, _maxInvocations: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "updatePrice"
+    nameOrSignature: 'updatePrice'
   ): TypedContractMethod<
     [_collectionId: BigNumberish, _price: BigNumberish],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "updateScript"
+    nameOrSignature: 'updateScript'
   ): TypedContractMethod<
     [_collectionId: BigNumberish, _script: string],
     [void],
-    "nonpayable"
+    'nonpayable'
   >;
   getFunction(
-    nameOrSignature: "withdraw"
-  ): TypedContractMethod<[value: BigNumberish], [void], "nonpayable">;
+    nameOrSignature: 'withdraw'
+  ): TypedContractMethod<[value: BigNumberish], [void], 'nonpayable'>;
 
   getEvent(
-    key: "Approval"
+    key: 'Approval'
   ): TypedContractEvent<
     ApprovalEvent.InputTuple,
     ApprovalEvent.OutputTuple,
     ApprovalEvent.OutputObject
   >;
   getEvent(
-    key: "ApprovalForAll"
+    key: 'ApprovalForAll'
   ): TypedContractEvent<
     ApprovalForAllEvent.InputTuple,
     ApprovalForAllEvent.OutputTuple,
     ApprovalForAllEvent.OutputObject
   >;
   getEvent(
-    key: "Mint"
+    key: 'Mint'
   ): TypedContractEvent<
     MintEvent.InputTuple,
     MintEvent.OutputTuple,
     MintEvent.OutputObject
   >;
   getEvent(
-    key: "OwnershipTransferred"
+    key: 'OwnershipTransferred'
   ): TypedContractEvent<
     OwnershipTransferredEvent.InputTuple,
     OwnershipTransferredEvent.OutputTuple,
     OwnershipTransferredEvent.OutputObject
   >;
   getEvent(
-    key: "Transfer"
+    key: 'Transfer'
   ): TypedContractEvent<
     TransferEvent.InputTuple,
     TransferEvent.OutputTuple,
@@ -833,7 +831,7 @@ export interface ERC721 extends BaseContract {
   >;
 
   filters: {
-    "Approval(address,address,uint256)": TypedContractEvent<
+    'Approval(address,address,uint256)': TypedContractEvent<
       ApprovalEvent.InputTuple,
       ApprovalEvent.OutputTuple,
       ApprovalEvent.OutputObject
@@ -844,7 +842,7 @@ export interface ERC721 extends BaseContract {
       ApprovalEvent.OutputObject
     >;
 
-    "ApprovalForAll(address,address,bool)": TypedContractEvent<
+    'ApprovalForAll(address,address,bool)': TypedContractEvent<
       ApprovalForAllEvent.InputTuple,
       ApprovalForAllEvent.OutputTuple,
       ApprovalForAllEvent.OutputObject
@@ -855,7 +853,7 @@ export interface ERC721 extends BaseContract {
       ApprovalForAllEvent.OutputObject
     >;
 
-    "Mint(address,uint256,uint256,bytes32)": TypedContractEvent<
+    'Mint(address,uint256,uint256,bytes32)': TypedContractEvent<
       MintEvent.InputTuple,
       MintEvent.OutputTuple,
       MintEvent.OutputObject
@@ -866,7 +864,7 @@ export interface ERC721 extends BaseContract {
       MintEvent.OutputObject
     >;
 
-    "OwnershipTransferred(address,address)": TypedContractEvent<
+    'OwnershipTransferred(address,address)': TypedContractEvent<
       OwnershipTransferredEvent.InputTuple,
       OwnershipTransferredEvent.OutputTuple,
       OwnershipTransferredEvent.OutputObject
@@ -877,7 +875,7 @@ export interface ERC721 extends BaseContract {
       OwnershipTransferredEvent.OutputObject
     >;
 
-    "Transfer(address,address,uint256)": TypedContractEvent<
+    'Transfer(address,address,uint256)': TypedContractEvent<
       TransferEvent.InputTuple,
       TransferEvent.OutputTuple,
       TransferEvent.OutputObject

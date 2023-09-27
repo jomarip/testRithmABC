@@ -5,12 +5,15 @@ import { useDispatch } from 'react-redux';
 import { globalActions } from './slice';
 import { useConnect } from 'wagmi';
 import { metamaskConnector } from './utils/connector';
+import { homeActions } from '../home/slice';
+import { isAddress } from 'ethers';
 
 export const nftAPI = Moralis.EvmApi.nft;
+export const tokenAPI = Moralis.EvmApi.token;
 
 export const Blockchain = () => {
   const dispatch = useDispatch();
-  const { connect, isSuccess, data, connectAsync } = useConnect({
+  const { data, connectAsync } = useConnect({
     connector: metamaskConnector,
   });
   useEffect(() => {
@@ -38,6 +41,16 @@ export const Blockchain = () => {
         globalActions.setWalletRelatedData({
           connectedWalletAddress: data.account,
           provider: data.provider,
+        })
+      );
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (data?.account && isAddress(data.account)) {
+      dispatch(
+        homeActions.getListOfNFTs({
+          owner: data.account, //'0xF5f08Ba7F46e2a86b5ef3BFD56c2097C9f4276D7',
         })
       );
     }

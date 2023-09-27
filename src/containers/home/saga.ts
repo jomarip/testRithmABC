@@ -2,11 +2,10 @@ import {
   CHAIN_ID,
   ERC721_ADDRESS,
   IMPLEMENTATION_ADDRESS,
-  erc721Contract,
   registryContract,
 } from '@/configs/web3';
 import { homeActions } from './slice';
-import { takeLatest, put, select, all } from 'redux-saga/effects';
+import { takeLatest, put, all } from 'redux-saga/effects';
 import { NFTResponse } from './types';
 import { nftsFromCollection } from './providers/nftsFromCollection[OwnedBy]';
 
@@ -20,6 +19,7 @@ function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
     ]);
     let toCall: any[] = [];
     nftsResponse.forEach((nft) => {
+      nft.mainImage = `https://rithm.s3.filebase.com/curatorship/${nft.token_id}.png`;
       toCall.push(
         registryContract.account(
           IMPLEMENTATION_ADDRESS,
@@ -32,23 +32,63 @@ function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
     });
     const addresses: string[] = yield all(toCall);
     toCall = [];
-    addresses.forEach((address, index) => {
-      toCall.push(nftsFromCollection(address, [ERC721_ADDRESS]));
+
+    addresses.forEach((address) => {
+      toCall.push(nftsFromCollection(address));
     });
     const nfts: NFTResponse[][] = yield all(toCall);
-
-    nfts.forEach((nftList) => {
-      nftList.forEach((nft) => {
-        if (nft.metadata && typeof nft.metadata === 'string') {
-          nft.metadata = JSON.parse(nft.metadata);
-        }
-      });
-    });
-
+    toCall = [];
     nftsResponse.forEach((nft, index) => {
       nft.boundedNfts = nfts[index];
     });
+    // const responses: any = [];
+    // nftsResponse.forEach(async (nft) => {
+    //   const boundedNfts = nft.boundedNfts;
+    //   const calls: any[] = [];
+    //   for (let i = 0; i < boundedNfts.length; i++) {
+    //     const boundedNFT = boundedNfts[i];
+    //     if (!boundedNFT.token_uri) {
+    //       const contract = ERC721__factory.connect(
+    //         boundedNFT.token_address,
+    //         avalancheDefaultProvider
+    //       );
+    //       calls.push(contract.tokenURI(boundedNFT.token_id));
+    //     }
+    //   }
+    //   responses.push(Promise.all(calls));
+    // });
+    // const res: string[][] = yield Promise.all(responses);
+    // const callArray: any = [];
+    // nftsResponse.forEach((nft, index) => {
+    //   const boundedNfts = nft.boundedNfts;
+    //   const responses = res[index];
+    //   const metadataArray: any[] = [];
+    //   for (let i = 0; i < boundedNfts.length; i++) {
+    //     const boundedNFT = boundedNfts[i];
+    //     if (!boundedNFT.token_uri && responses[i]) {
+    //       boundedNFT.token_uri = responses[i];
+    //       metadataArray.push(
 
+    //       );
+    //     }
+    //   }
+    //   callArray.push(Promise.all(metadataArray));
+    // });
+    // const metadataResponses: any[][] = yield Promise.all(callArray);
+    // console.log({ metadataResponses });
+    // nftsResponse.forEach((nft, index) => {
+    //   const tmp = cloneDeep(nft);
+    //   const boundedNfts = tmp.boundedNfts;
+    //   const responses = metadataResponses[index];
+    //   for (let i = 0; i < boundedNfts.length; i++) {
+    //     const boundedNFT = boundedNfts[i];
+    //     if (!boundedNFT.metadata) {
+    //       boundedNFT.metadata = responses[i];
+    //     }
+    //   }
+    //   console.log({ tmp });
+    // });
+    // console.log({ nftData: nftsResponse });
     yield put(homeActions.setListOfNFTs(nftsResponse));
   } catch (error) {
     console.log({ error });
@@ -56,34 +96,6 @@ function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
     yield put(homeActions.setIsLoadingListOfNFTs(false));
   }
 }
-
-// function* transferSelectedNFTs(
-//   action: ReturnType<typeof homeActions.transferSelectedNFTs>
-// ) {
-//   const { receiver } = action.payload;
-//   try {
-//     yield put(homeActions.setIsTransferingNFTs(true));
-//     const ownerAddress: string = yield select(
-//       GlobalSelectors.connectedWalletAddress
-//     );
-//     const provider = new ethers.BrowserProvider(window.ethereum);
-//     const signer: Signer = yield provider.getSigner();
-//     const selectedNfts: NFTResponse[] = yield select(
-//       HomeSelectors.selectedNFTsToTransfer
-//     );
-
-//     const contract = ERC721__factory.connect(ERC721_ADDRESS, signer);
-//     for (const nft of selectedNfts) {
-//       yield contract.approve(receiver, nft.token_id);
-//       yield contract.transferFrom(ownerAddress, receiver, nft.token_id);
-//     }
-//     toast.success('Transfered NFTs successfully');
-//   } catch (error) {
-//     console.log({ error });
-//   } finally {
-//     yield put(homeActions.setIsTransferingNFTs(false));
-//   }
-// }
 
 export function* homeSaga() {
   yield takeLatest(homeActions.getListOfNFTs.type, getListOfNFTs);

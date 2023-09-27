@@ -1,21 +1,23 @@
 import { Modal } from '@/components/modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { HomeSelectors } from '../../selectors';
-import { homeActions } from '../../slice';
 import { useState } from 'react';
 import { SecondaryButton } from '@/components/button/secondary';
 import SimpleInput from '@/components/inputs/simple';
 import { isAddress } from 'ethers';
+import { BoundedNftsSelectors } from '../../selectors';
+import { boundedNftsActions } from '../../slice';
 
 export const TransferModal = () => {
   const dispatch = useDispatch();
   const [destination, setDestination] = useState('');
-  const isOpen = useSelector(HomeSelectors.isTransferModalOpen);
+  const isOpen = useSelector(BoundedNftsSelectors.isTransferModalOpen);
   const closeModal = () => {
-    // dispatch(homeActions.setIsTransferModalOpen(false));
+    dispatch(boundedNftsActions.setIsTransferModalOpen(false));
   };
   const transfer = () => {
-    // dispatch(homeActions.transferSelectedNFTs({ receiver: destination }));
+    dispatch(
+      boundedNftsActions.transferSelectedNFTs({ receiver: destination })
+    );
   };
 
   const setInputValue = (e: string) => {

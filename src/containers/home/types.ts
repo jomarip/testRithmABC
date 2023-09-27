@@ -10,7 +10,7 @@ export type NFTResponse = MoralisNFTResponse & {
   boundedNfts: Array<MoralisNFTResponse>;
 };
 
-interface MoralisNFTResponse {
+export interface MoralisNFTResponse {
   token_address: string;
   token_id: string;
   owner_of: string;
@@ -23,7 +23,8 @@ interface MoralisNFTResponse {
   name: string;
   symbol: string;
   token_uri: string;
-  metadata: {
+  mainImage: string;
+  metadata?: {
     platform: string;
     name: string;
     description: string;
@@ -31,10 +32,11 @@ interface MoralisNFTResponse {
     external_url: string;
     image: string;
   };
+  parsedMetadata?: any;
   last_token_uri_sync: string;
   last_metadata_sync: string;
   minter_address: string;
-  media: Media;
+  media?: Media;
   verified_collection: boolean;
 }
 
