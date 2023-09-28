@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 export const WalletConnection = () => {
   const connectedAccount = useSelector(GlobalSelectors.connectedWalletAddress);
   const dispatch = useDispatch();
-  const { data, connectAsync, reset } = useConnect({
+  const { data, connectAsync } = useConnect({
     connector: metamaskConnector,
   });
 
@@ -27,13 +27,14 @@ export const WalletConnection = () => {
       dispatch(
         globalActions.setWalletRelatedData({
           connectedWalletAddress: res.account,
+          //   @ts-ignore
           provider: res.provider,
         })
       );
     }
   };
   const disconnect = () => {
-    reset();
+    console.log('tbd');
   };
   return (
     <PrimaryButton onClick={connectedAccount ? disconnect : connect}>
