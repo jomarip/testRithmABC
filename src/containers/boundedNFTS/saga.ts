@@ -36,8 +36,9 @@ const transferSelectedNFTs = function* (
       if (res?.status) {
         console.log('approved');
         // transfer nft to receiver
-        const tx: ethers.ContractTransactionResponse =
-          yield contract.transferFrom(nft.owner_of, receiver, nft.token_id);
+        const tx: ethers.ContractTransactionResponse = yield contract[
+          'safeTransferFrom(address,address,uint256)'
+        ](nft.owner_of, receiver, nft.token_id);
         const finalRes: ethers.ContractTransactionReceipt | null =
           yield tx.wait();
         if (finalRes?.status) {
