@@ -5,6 +5,7 @@ import { BoundedNftsDomain } from './selectors';
 import { erc721Contract } from '@/configs/web3';
 import { Signer, ethers } from 'ethers';
 import { ERC721__factory } from '@/abi/abi-types';
+import { toast } from 'react-toastify';
 
 const transferSelectedNFTs = function* (
   action: ReturnType<typeof boundedNftsActions.transferSelectedNFTs>
@@ -43,6 +44,7 @@ const transferSelectedNFTs = function* (
             yield tx.wait();
           if (finalRes?.status) {
             console.log('transfered');
+            toast.success('Transfered successfully');
           }
         }
       } catch (error) {
