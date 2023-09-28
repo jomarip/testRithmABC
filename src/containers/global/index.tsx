@@ -22,29 +22,6 @@ export const Blockchain = () => {
     };
     startM();
   }, []);
-  useEffect(() => {
-    const connectAs = async () => {
-      const res = await connectAsync();
-      if (res) {
-        dispatch(
-          globalActions.setWalletRelatedData({
-            connectedWalletAddress: res.account,
-            provider: res.provider,
-          })
-        );
-      }
-    };
-    if (!data) {
-      connectAs();
-    } else {
-      dispatch(
-        globalActions.setWalletRelatedData({
-          connectedWalletAddress: data.account,
-          provider: data.provider,
-        })
-      );
-    }
-  }, [data]);
 
   useEffect(() => {
     if (data?.account && isAddress(data.account)) {

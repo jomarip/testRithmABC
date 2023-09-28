@@ -10,6 +10,7 @@ import { WagmiConfig, createConfig, configureChains } from 'wagmi';
 import { avalanche } from 'wagmi/chains';
 
 import { publicProvider } from 'wagmi/providers/public';
+import { Layout } from './layout';
 
 const { publicClient, webSocketPublicClient } = configureChains(
   [avalanche],
@@ -45,7 +46,7 @@ export function App() {
         <AppContainer>
           <Blockchain />
           <Router>
-            <ContentContainer>
+            <Layout>
               <Routes>
                 {appRoutes.map((route) => (
                   <Route
@@ -56,7 +57,7 @@ export function App() {
                 ))}
                 <Route path="*" element={<NotFound />}></Route>
               </Routes>
-            </ContentContainer>
+            </Layout>
           </Router>
         </AppContainer>
       </ThemeProvider>
@@ -70,12 +71,6 @@ const AppContainer = styled(Box)`
   width: 100vw;
 `;
 
-const ContentContainer = styled(Box)`
-  min-height: calc(100vh);
-  box-sizing: border-box;
-  background-color: var(--black);
-  color: white;
-`;
 export function WrappedApp() {
   return <App />;
 }

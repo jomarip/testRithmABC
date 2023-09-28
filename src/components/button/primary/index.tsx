@@ -16,7 +16,7 @@ export const PrimaryButton: FC<Props> = ({
 };
 
 const Primary = styled(BaseButton)`
-  color: var(--black);
+  color: var(--white);
   background-color: var(--greyscale-700);
   &:hover {
     background-color: var(--greyscale-600);
