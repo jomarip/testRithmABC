@@ -13,7 +13,6 @@ export const ListOfNFTs = () => {
   );
   const handleNftClick = async (index: number) => {
     const nft = nftList[index];
-    console.log({ nft });
     navigate({
       pathname: `${AppPages.BoundedNfts}/${nft.token_id}`,
     });
