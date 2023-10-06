@@ -11,12 +11,14 @@ import { nftsFromCollection } from './providers/nftsFromCollection[OwnedBy]';
 
 function* getListOfNFTs(action: ReturnType<typeof homeActions.getListOfNFTs>) {
   const { owner: ownerAddress } = action.payload;
+  console.log(`getting list of nfts for ${ownerAddress}`);
   try {
     yield put(homeActions.setIsLoadingListOfNFTs(true));
     // @ts-ignore
     const nftsResponse: NFTResponse[] = yield nftsFromCollection(ownerAddress, [
       ERC721_ADDRESS,
     ]);
+    console.log({ nftsResponse, ownerAddress, ERC721_ADDRESS });
     let toCall: any[] = [];
     nftsResponse.forEach((nft) => {
       nft.mainImage = `https://rithm.s3.filebase.com/curatorship/${nft.token_id}.png`;
